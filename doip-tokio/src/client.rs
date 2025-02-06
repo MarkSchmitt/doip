@@ -297,7 +297,7 @@ impl DoIpClient {
         header: &DoIpHeader,
         payload: &[u8],
     ) -> Result<(), DoIpTokioError> {
-        println!("write {} {:?}", header, payload);
+        println!("write {:?} {:?}", header, payload);
         self.tls_stream.send((header, payload)).await?;
         Ok(())
     }
@@ -310,7 +310,7 @@ impl DoIpClient {
             return Err(DoIpError::Nack(nack_code).into());
         }
 
-        println!("read {} {:?}", header, payload);
+        println!("read {:?} {:?}", header, payload);
 
         Ok(DoIpMessage {
             header,
