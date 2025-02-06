@@ -301,7 +301,7 @@ impl DoIpClient {
         Ok(())
     }
 
-    async fn read_tcp_message(&mut self) -> Result<DoIpMessage, DoIpTokioError> {
+    pub async fn read_tcp_message(&mut self) -> Result<DoIpMessage, DoIpTokioError> {
         let (header, payload) = self.tls_stream.next().await.unwrap()?;
 
         if header.payload_type == PayloadType::GenericDoIpHeaderNegativeAcknowledge {
